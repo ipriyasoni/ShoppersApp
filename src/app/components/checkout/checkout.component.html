@@ -1,0 +1,184 @@
+<div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0"><a routerLink="/">Home</a> <span class="mx-2 mb-0">/</span> <a
+            routerLink="/cart">Cart</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Checkout</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="site-section">
+    <div class="container">
+      <form #shippingForm="ngForm" (ngSubmit)="saveShipping(shippingForm)" *ngIf="cart$ | async as cart; else emptyCart">
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <h2 class="h3 mb-3 text-black">Billing Details</h2>
+            <div class="p-3 p-lg-5 border">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="first_name" class="text-black">First Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" 
+                  [class.is-invalid]="first_name.touched && first_name.invalid"
+                  [class.is-valid]="first_name.touched && first_name.valid" 
+                  id="first_name" 
+                  ngModel 
+                  name="first_name"
+                  #first_name="ngModel" required="required">
+                  <div *ngIf="first_name.touched && first_name.invalid" class="invalid-feedback">
+                    Please enter first name.
+                  </div>
+                  <div *ngIf="first_name.touched && first_name.valid" class="valid-feedback">
+                    Looks Good!
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="last_name" class="text-black">Last Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" 
+                  [class.is-invalid]="last_name.touched && last_name.invalid"
+                  [class.is-valid]="last_name.touched && last_name.valid" id="last_name" ngModel name="last_name"
+                  #last_name="ngModel" required="required">
+                  <div *ngIf="last_name.touched && last_name.invalid" class="invalid-feedback">
+                    Please enter last name.
+                  </div>
+                  <div *ngIf="last_name.touched && last_name.valid" class="valid-feedback">
+                    Looks Good!
+                  </div>
+                </div>
+              </div>
+  
+  
+              <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="email" class="text-black">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control"
+                    ngModel
+                    #email="ngModel"
+                    id="email" name="email" placeholder=""
+                    required="required"
+                    pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"
+                    [class.is-invalid]="email.touched && email.invalid"
+                    [class.is-valid]="email.touched && email.valid"
+                    >
+                    <div *ngIf="email.touched && email.invalid && email.errors.required" class="invalid-feedback">
+                      Please enter email.
+                    </div>
+                    <div *ngIf="email.touched && email.invalid && email.errors.pattern" class="invalid-feedback">
+                      Please enter valid email.
+                    </div>
+                    <div *ngIf="email.touched && email.valid" class="valid-feedback">
+                      Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control"
+                  placeholder="Phone Number"
+                  [class.is-invalid]="phone.touched && phone.invalid"
+                  [class.is-valid]="phone.touched && phone.valid" 
+                  id="phone" ngModel name="phone"
+                  #phone="ngModel" required="required">
+                  <div *ngIf="phone.touched && phone.invalid" class="invalid-feedback">
+                    Please enter phone number.
+                  </div>
+                  <div *ngIf="phone.touched && phone.valid" class="valid-feedback">
+                    Looks Good!
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" 
+                  placeholder="Street address"
+                  [class.is-invalid]="address.touched && address.invalid"
+                  [class.is-valid]="address.touched && address.valid" 
+                  id="address" ngModel name="address"
+                  #address="ngModel" required="required">
+                  <div *ngIf="address.touched && address.invalid" class="invalid-feedback">
+                    Please enter address.
+                  </div>
+                  <div *ngIf="address.touched && address.valid" class="valid-feedback">
+                    Looks Good!
+                  </div>
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)"
+                id="apartment_address" ngModel name="apartment_address" #apartment_address="ngModel">
+              </div>
+  
+              <div class="form-group row mb-5">
+                <div class="col-md-6">
+                  <label for="state_country" class="text-black">State<span class="text-danger">*</span></label>
+                  <input type="text" class="form-control"
+                  id="state_country" ngModel name="state_country" #state_country="ngModel">
+                </div>
+                <div class="col-md-6">
+                  <label for="postal_zip" class="text-black">Zipcode <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control"
+                  id="postal_zip" ngModel name="postal_zip" #postal_zip="ngModel">
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label for="order_notes" class="text-black">Order Notes</label>
+                <textarea id="order_notes" ngModel name="order_notes" #order_notes="ngModel" cols="30" rows="5" class="form-control"
+                  placeholder="Write your notes here..."></textarea>
+              </div>
+  
+            </div>
+          </div>
+          <div class="col-md-6">
+  
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">Your Order</h2>
+                <div class="p-3 p-lg-5 border">
+                  <table class="table site-block-order-table mb-5">
+                    <thead>
+                      <th>Product</th>
+                      <th>Total</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let cartItem of cart.cartItems">
+                        <td>{{ cartItem.product.title }} <strong class="mx-2">x</strong> {{ cartItem.quantity }}</td>
+                        <td>${{ cartItem.subtotal }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                        <td class="text-black font-weight-bold"><strong>${{ cart.totalPrice }}</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+  
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg py-3 btn-block" [disabled]="shippingForm.invalid">Place
+                      Order</button>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </form>
+      <!-- </form> -->
+      <ng-template #emptyCart>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row mb-5">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <p>Your cart is empty.</p>
+                <a routerLink="/shop" class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>

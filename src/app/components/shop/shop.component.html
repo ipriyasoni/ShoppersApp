@@ -1,0 +1,40 @@
+<div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0"><a routerLink="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
+            class="text-black">Shop</strong></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="site-section">
+    <div class="container">
+  
+      <div class="row mb-5">
+        <div class="col-md-12">
+  
+          <div class="row mb-5">
+            <div *ngFor="let product of products" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <img [src]="product.imageUrl" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>{{ product.title }}</h3>
+                  <p class="text-primary font-weight-bold">${{ product.price }}</p>
+                </div>
+                <div class="cart-btn-wrapper" *ngIf="getQuantity(product.key) == 0; else addedtocart">
+                  <button type="button" class="btn btn-primary btn-block" (click)="addToCart(product)">Add To Cart</button>
+                </div>
+                <ng-template #addedtocart>
+                  <app-quantity-selector [product]="product" [cart]="cart"></app-quantity-selector>
+                </ng-template>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
