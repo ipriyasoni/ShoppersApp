@@ -5,12 +5,12 @@
 
         <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
           <div class="site-logo">
-            <a routerLink="/" class="js-logo-clone">Shoppers</a>
+            <a href="/" class="js-logo-clone">Shoppers</a>
           </div>
         </div>
 
         <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-          
+
         </div>
 
         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
@@ -18,23 +18,24 @@
             <ul>
               <li *ngIf="!(user$ | async) as user">
                 <a routerLink="/login">
-                <span class="icon icon-person"></span></a>
+                  <span class="icon icon-person"></span></a>
               </li>
               <li>
-                  <a routerLink="/cart" class="site-cart">
-                    <span class="icon icon-shopping_cart"></span>
-                    <span class="count" *ngIf="cart$ | async as cart">
-                      {{ cart.totalQuantity }}</span>
-                  </a>
-                </li> 
-              <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                <a routerLink="/cart" class="site-cart">
+                  <span class="icon icon-shopping_cart"></span>
+                  <span class="count" *ngIf="cart$ | async as cart">
+                    {{ cart.totalQuantity }}</span>
+                </a>
+              </li>
+              <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span
+                    class="icon-menu"></span></a></li>
             </ul>
-          </div> 
+          </div>
         </div>
 
       </div>
     </div>
-  </div> 
+  </div>
   <nav class="site-navigation text-right text-md-center" role="navigation">
     <div class="container">
       <ul class="site-menu js-clone-nav d-none d-md-block">
@@ -51,15 +52,15 @@
           <a routerLink="/contact">Contact</a>
         </li>
         <li class="has-children" *ngIf="dbUser$ | async as dbUser">
-          <a href="javascript:;">{{ dbUser.name }}</a>
+          <a href="javascript:void(0)">{{ dbUser.name }}</a>
           <ul class="dropdown">
             <li *ngIf="dbUser.isAdmin"><a routerLink="/manage-products">Manage Product</a></li>
             <li><a routerLink="/my-orders">My Orders</a></li>
-            <li><a href="javascript:;" (click)="logout()">Logout</a></li>
+            <li><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
           </ul>
         </li>
 
-        
+
       </ul>
     </div>
   </nav>

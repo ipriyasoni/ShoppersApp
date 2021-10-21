@@ -17,7 +17,7 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
     this.productSubscription = products.subscribe(productList => { //subscribe  AngularFireAction<DatabaseSnapshot<Product>>[]) 
       this.products = productList.map(product => { //this map is js: input array -> output array
         let productObj = product.payload.val();
-        productObj['key'] = product.payload.key; //for getting key or adding key value pair
+        productObj['key'] = product.payload['key']; //for getting key or adding key value pair
         return productObj;
       });
       

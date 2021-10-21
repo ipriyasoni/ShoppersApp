@@ -20,7 +20,7 @@
                     <th>Shipping Address</th>
                   </tr>
             </thead>
-            <tbody *ngIf="orders$ | async as orders; else noorders">
+            <tbody *ngIf="order$ | async as orders; else noorders">
                 <tr *ngFor="let order of orders">
                   <td>{{ order.dateCreated | date }}</td>
                   <td>{{ order.shipping.address }}</td>

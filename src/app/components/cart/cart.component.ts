@@ -10,7 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   cart$: Observable<Cart>;
-
+  cartisempty
   constructor(private cartService: CartService) { }
 
   async ngOnInit() {
